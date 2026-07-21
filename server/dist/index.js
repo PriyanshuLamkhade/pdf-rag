@@ -26,28 +26,33 @@ const upload = multer({ storage: storage });
 app.post("/chat", async (req, res) => {
     const { query } = req.body;
     const ret = vectorStore.asRetriever({
-        k: 3
+        k: 2
     });
     const result = await ret.invoke(query);
     const context = result
         .map(doc => doc.pageContent)
         .join("\n\n");
     const SYSTEM_PROMPT = `You are a helpful assistant that answers questions based on the provided context.
-    If the answer is not contained within the text below, say "I don't know.
+    If the answer is not contained within the text below, say "I don't know".
     Provide a detailed explanation with all important points.
     Keep the answer concise and to the point and well structured.
-    In the end add a summary of the answer in 2-3 lines."
-    ${JSON.stringify(context)}
+    In the end add a summary of the answer in 2-3 lines.
+    Context:
+    ${context}
     `;
     const response = await ollama.chat({
-        model: "qwen3.5",
+        model: "qwen3.5:9b",
         messages: [
             { role: "system", content: SYSTEM_PROMPT },
             { role: "user", content: query }
-        ]
+        ],
+        "think": "low"
     });
-    console.log(response.message.content);
-    res.json({ response: response.message.content });
+    console.log("Context length:", context.length);
+    console.dir(response, { depth: null });
+    console.log("context:", context);
+    console.log("RESPONSE:", response.message.content);
+    res.json({ response: response.message.content, airesponse: response });
 });
 app.post("/upload/pdf", upload.single('pdf'), async (req, res) => {
     queue.add('process-pdf', JSON.stringify({

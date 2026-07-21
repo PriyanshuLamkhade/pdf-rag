@@ -76,8 +76,8 @@ export default function ChatInput() {
   };
 
   return (
-    <div className="flex flex-col h-full gap-2 pb-3 pt-2 px-2">
-      <div className="flex-1  scrollbar-thin scrollbar-thumb-zinc-400 scrollbar-track-transparent space-y-3">
+    <div className="flex flex-col h-full gap-2 px-2">
+      <div className="flex-1  scrollbar-thin scrollbar-thumb-zinc-400 scrollbar-track-transparent space-y-3 pb-25">
         {messages.map((msg, index) => (
           <div
             key={index}
@@ -105,7 +105,7 @@ export default function ChatInput() {
       </div>
 
     
-  <div className="flex items-end gap-2 rounded-3xl border border-red-700 bg-zinc-900 p-3 fixed z-20 bottom-0 left-0 right-0">
+  <div className="flex items-end gap-2 rounded-3xl border border-zinc-700 bg-zinc-900 p-3 fixed z-20 bottom-2 left-30 right-30 ">
     <textarea
       ref={textareaRef}
       rows={1}
