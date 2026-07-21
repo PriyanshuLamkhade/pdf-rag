@@ -46,7 +46,7 @@ export default function RootLayout({
             </header>
           </Show>
           <Show when="signed-in">
-            <div className=" flex justify-end items-center bg-gray-400 p-3 min-w-full">
+            <div className=" flex justify-end items-center bg-gray-400 p-3 min-w-full fixed top-0 z-10">
               <UserButton />
             </div>
             <main className="flex-1">{children}</main>

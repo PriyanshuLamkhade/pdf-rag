@@ -26,7 +26,8 @@ const UploadFileComponent: React.FC = () => {
   };
   return (
     <div
-      className="sm:w-[30vw] cursor-pointer flex flex-col justify-center items-center p-4 border bg-gray-800 rounded-xl font-bold sm:text-2xl text-xl text-center gap-2 hover:shadow-md hover:shadow-gray-400 hover:-translate-y-0.5 transition-all "
+      className="fixed sm:w-[24vw] cursor-pointer flex flex-col top-70 justify-center items-center p-4 border bg-gray-800 rounded-xl 
+      font-bold sm:text-2xl text-xl text-center gap-2 hover:shadow-md hover:shadow-gray-400 hover:-translate-y-0.5 transition-all "
       onClick={handleFileUploadButtonClick}
     >
       <h1>Upload PDF</h1>
